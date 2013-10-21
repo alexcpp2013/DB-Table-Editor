@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.bClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TimeOut = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
             this.tTable = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tPassword = new System.Windows.Forms.TextBox();
@@ -57,20 +59,19 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataSet1 = new DBQ.DataSet1();
             this.dataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label8 = new System.Windows.Forms.Label();
-            this.TimeOut = new System.Windows.Forms.NumericUpDown();
+            this.cbIsLike = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeOut)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeOut)).BeginInit();
             this.SuspendLayout();
             // 
             // bClose
             // 
             this.bClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.bClose.Location = new System.Drawing.Point(659, 442);
+            this.bClose.Location = new System.Drawing.Point(659, 515);
             this.bClose.Name = "bClose";
             this.bClose.Size = new System.Drawing.Size(75, 23);
             this.bClose.TabIndex = 0;
@@ -99,6 +100,37 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "База Данных";
+            // 
+            // TimeOut
+            // 
+            this.TimeOut.Location = new System.Drawing.Point(611, 79);
+            this.TimeOut.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.TimeOut.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.TimeOut.Name = "TimeOut";
+            this.TimeOut.Size = new System.Drawing.Size(80, 20);
+            this.TimeOut.TabIndex = 19;
+            this.TimeOut.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(487, 84);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(80, 13);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Таймаут (сек.)";
             // 
             // tTable
             // 
@@ -192,6 +224,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbIsLike);
             this.groupBox2.Controls.Add(this.bCancel);
             this.groupBox2.Controls.Add(this.bUnlock);
             this.groupBox2.Controls.Add(this.label6);
@@ -206,14 +239,14 @@
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Location = new System.Drawing.Point(12, 129);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(731, 302);
+            this.groupBox2.Size = new System.Drawing.Size(731, 380);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Результат Запроса";
             // 
             // bCancel
             // 
-            this.bCancel.Location = new System.Drawing.Point(583, 65);
+            this.bCancel.Location = new System.Drawing.Point(583, 83);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(123, 23);
             this.bCancel.TabIndex = 47;
@@ -224,7 +257,7 @@
             // 
             // bUnlock
             // 
-            this.bUnlock.Location = new System.Drawing.Point(443, 65);
+            this.bUnlock.Location = new System.Drawing.Point(443, 83);
             this.bUnlock.Name = "bUnlock";
             this.bUnlock.Size = new System.Drawing.Size(123, 23);
             this.bUnlock.TabIndex = 46;
@@ -235,7 +268,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(372, 24);
+            this.label6.Location = new System.Drawing.Point(360, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 13);
             this.label6.TabIndex = 45;
@@ -251,7 +284,7 @@
             // 
             // bSave
             // 
-            this.bSave.Location = new System.Drawing.Point(442, 64);
+            this.bSave.Location = new System.Drawing.Point(442, 82);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(123, 23);
             this.bSave.TabIndex = 43;
@@ -262,7 +295,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(22, 64);
+            this.button1.Location = new System.Drawing.Point(22, 82);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(123, 23);
             this.button1.TabIndex = 42;
@@ -272,7 +305,7 @@
             // 
             // bFind
             // 
-            this.bFind.Location = new System.Drawing.Point(164, 64);
+            this.bFind.Location = new System.Drawing.Point(164, 82);
             this.bFind.Name = "bFind";
             this.bFind.Size = new System.Drawing.Size(123, 23);
             this.bFind.TabIndex = 41;
@@ -283,7 +316,7 @@
             // ProgressBar
             // 
             this.ProgressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ProgressBar.Location = new System.Drawing.Point(3, 94);
+            this.ProgressBar.Location = new System.Drawing.Point(3, 115);
             this.ProgressBar.MarqueeAnimationSpeed = 10;
             this.ProgressBar.Maximum = 25;
             this.ProgressBar.Name = "ProgressBar";
@@ -295,7 +328,7 @@
             // 
             // tValue
             // 
-            this.tValue.Location = new System.Drawing.Point(484, 17);
+            this.tValue.Location = new System.Drawing.Point(484, 22);
             this.tValue.Name = "tValue";
             this.tValue.Size = new System.Drawing.Size(201, 20);
             this.tValue.TabIndex = 4;
@@ -311,7 +344,7 @@
             // 
             // bDelete
             // 
-            this.bDelete.Location = new System.Drawing.Point(304, 65);
+            this.bDelete.Location = new System.Drawing.Point(304, 83);
             this.bDelete.Name = "bDelete";
             this.bDelete.Size = new System.Drawing.Size(123, 23);
             this.bDelete.TabIndex = 2;
@@ -323,10 +356,10 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 116);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 137);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(725, 183);
+            this.dataGridView1.Size = new System.Drawing.Size(725, 240);
             this.dataGridView1.TabIndex = 0;
             // 
             // dataSet1
@@ -339,46 +372,26 @@
             this.dataSet1BindingSource.DataSource = this.dataSet1;
             this.dataSet1BindingSource.Position = 0;
             // 
-            // label8
+            // cbIsLike
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(487, 84);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(80, 13);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "Таймаут (сек.)";
-            // 
-            // TimeOut
-            // 
-            this.TimeOut.Location = new System.Drawing.Point(611, 79);
-            this.TimeOut.Maximum = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
-            this.TimeOut.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.TimeOut.Name = "TimeOut";
-            this.TimeOut.Size = new System.Drawing.Size(80, 20);
-            this.TimeOut.TabIndex = 19;
-            this.TimeOut.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
+            this.cbIsLike.AutoSize = true;
+            this.cbIsLike.Location = new System.Drawing.Point(363, 50);
+            this.cbIsLike.Name = "cbIsLike";
+            this.cbIsLike.Size = new System.Drawing.Size(71, 17);
+            this.cbIsLike.TabIndex = 49;
+            this.cbIsLike.Text = "Похожие";
+            this.cbIsLike.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bClose;
-            this.ClientSize = new System.Drawing.Size(746, 474);
+            this.ClientSize = new System.Drawing.Size(746, 550);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.bClose);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -387,12 +400,12 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TimeOut)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TimeOut)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -429,6 +442,7 @@
         private System.Windows.Forms.Button bCancel;
         private System.Windows.Forms.NumericUpDown TimeOut;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox cbIsLike;
     }
 }
 

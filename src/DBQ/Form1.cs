@@ -23,6 +23,7 @@ namespace DBQ
         string Value = "";
         string Parameter = "";
         string Table = "";
+        bool IsLike = false;
 
         SqlCommand sCommand;
         SqlDataAdapter sAdapter;
@@ -51,6 +52,7 @@ namespace DBQ
             User = tUser.Text;
             Password = tPassword.Text;
             Value = tValue.Text;
+            IsLike = cbIsLike.Checked;
 
             bool flag = false;
             foreach (var el in cbParameter.Items)
@@ -178,9 +180,14 @@ namespace DBQ
                 DeInitializeData();
                 return;
             }
-            
-            string sql = "select " + "*" + " from " + Table +
-                         " where " + Parameter + " = '" + Value + "'";
+
+            string sql = "";
+            if (IsLike)
+                sql = "select " + "*" + " from " + Table +
+                      " where " + Parameter + " like '%" + Value + "%'";
+            else
+                sql = "select " + "*" + " from " + Table +
+                      " where " + Parameter + " = '" + Value + "'";
 
             int tmp = await Task<int>.Run(() =>
             {
